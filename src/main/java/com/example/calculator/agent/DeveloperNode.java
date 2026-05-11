@@ -8,7 +8,7 @@ public class DeveloperNode {
     private final LocalCodexModel codexModel;
 
     public DeveloperNode() {
-        this(new LocalCodexModel("codex"));
+        this(new LocalCodexModel("/opt/homebrew/bin/codex"));
     }
 
     public DeveloperNode(LocalCodexModel codexModel) {

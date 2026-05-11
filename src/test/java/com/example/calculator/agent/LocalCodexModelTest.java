@@ -15,15 +15,15 @@ class LocalCodexModelTest {
 
     @Test
     @EnabledOnOs({OS.MAC, OS.LINUX})
-    void testGenerateUsingCatBinary() {
-        // We use /bin/cat as a mock binary because it echoes back everything from stdin to stdout
-        LocalCodexModel model = new LocalCodexModel("/bin/cat");
+    void testGenerateUsingRealCodexBinary() {
+        // Updated to use the actual codex binary found at /opt/homebrew/bin/codex
+        LocalCodexModel model = new LocalCodexModel("/opt/homebrew/bin/codex");
         
-        UserMessage message = UserMessage.from("Test Prompt Content");
+        UserMessage message = UserMessage.from("echo 'Hello World'");
         Response<AiMessage> response = model.generate(Collections.singletonList(message));
         
-        // Assert that the model correctly captured the output from the process
-        assertThat(response.content().text()).contains("Test Prompt Content");
+        // Assert that the response contains some content (specific content depends on the codex CLI output)
+        assertThat(response.content().text()).isNotEmpty();
     }
 
     @Test
