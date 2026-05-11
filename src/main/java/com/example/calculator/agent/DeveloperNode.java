@@ -8,7 +8,11 @@ public class DeveloperNode {
     private final LocalCodexModel codexModel;
 
     public DeveloperNode() {
-        this.codexModel = new LocalCodexModel("codex"); // Assumes codex is in PATH
+        this(new LocalCodexModel("codex"));
+    }
+
+    public DeveloperNode(LocalCodexModel codexModel) {
+        this.codexModel = codexModel;
     }
 
     public void process(AgenticScope scope) {
