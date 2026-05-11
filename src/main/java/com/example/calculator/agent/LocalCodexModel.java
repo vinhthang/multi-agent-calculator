@@ -4,6 +4,8 @@ import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.output.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,6 +13,7 @@ import java.io.OutputStream;
 import java.util.List;
 
 public class LocalCodexModel implements ChatLanguageModel {
+    private static final Logger log = LoggerFactory.getLogger(LocalCodexModel.class);
 
     private final String binaryPath;
 
@@ -27,6 +30,7 @@ public class LocalCodexModel implements ChatLanguageModel {
         String prompt = promptBuilder.toString();
 
         try {
+            log.info("LocalCodexModel: Executing binary at {}", binaryPath);
             ProcessBuilder pb = new ProcessBuilder(binaryPath);
             pb.redirectErrorStream(true);
             Process process = pb.start();

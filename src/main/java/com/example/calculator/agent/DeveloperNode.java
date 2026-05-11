@@ -1,9 +1,12 @@
 package com.example.calculator.agent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DeveloperNode {
+    private static final Logger log = LoggerFactory.getLogger(DeveloperNode.class);
 
     private final LocalCodexModel codexModel;
 
@@ -16,6 +19,7 @@ public class DeveloperNode {
     }
 
     public void process(AgenticScope scope) {
+        log.info("Developer Node: Implementing blueprint (Iteration {})", scope.getIterationCount());
         StringBuilder prompt = new StringBuilder();
         prompt.append("You are a Java Developer. Implement the logic for: ").append(scope.getBlueprint()).append("\n");
         
